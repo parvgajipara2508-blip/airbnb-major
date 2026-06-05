@@ -4,11 +4,15 @@ const mongoose = require("mongoose")
 const Listing = require("./models/listing.js")
 const path = require("path")
 const methodOverride = require("method-override")
+const ejs = require('ejs');
+const ejsMate = require("ejs-mate")
 
+app.engine("ejs", ejsMate)
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride("_method"))
+app.use(express.static(path.join(__dirname, "/public")))
 
 
 
@@ -55,6 +59,7 @@ app.post("/listings", async (req, res) => {
     const newListing = new Listing(req.body.listing)
     await newListing.save()
     res.redirect("/listings")
+
 })
 
 //edit route
@@ -76,6 +81,7 @@ app.delete("/listings/:id", async (req, res) => {
     let { id } = req.params
     let deleteListing = await Listing.findByIdAndDelete(id)
     res.redirect("/listings")
+    res.redirect
 })
 
 
