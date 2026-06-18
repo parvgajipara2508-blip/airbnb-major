@@ -4,7 +4,8 @@ const wrapAsync = require("../utils/wrapAsync.js")
 const ExpressError = require("../utils/ExpressError.js")
 const { reviewSchema } = require("../schema.js")
 const Reviews = require("../models/review.js")
-const Listing = require("../models/listing.js")
+const Listing = require("../models/listing.js");
+const { openDelimiter } = require("ejs");
 
 
 const validateReview = (req, res, next) => {
@@ -17,6 +18,8 @@ const validateReview = (req, res, next) => {
         next()
     }
 }
+
+
 
 //reviews
 //post route
