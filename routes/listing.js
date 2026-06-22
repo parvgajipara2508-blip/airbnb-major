@@ -16,6 +16,8 @@ const validateListing = (req, res, next) => {
     } else {
         next()
     }
+
+
 }
 
 
